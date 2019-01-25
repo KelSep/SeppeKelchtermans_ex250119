@@ -1,0 +1,20 @@
+Examenvragen REST API 			Seppe Kelchtermans
+
+------------------------------------------------------------
+
+Question 12:
+'https://rest.ensembl.org/variation/mus_musculus/rs4224828?' -H 'Content-type:application/json'
+
+{"ambiguity":"Y","MAF":null,"ancestral_allele":null,"source":"Variants (including SNPs and indels) imported from dbSNP","mappings":[{"seq_region_name":"4","coord_system":"chromosome","start":136443949,"strand":1,"location":"4:136443949-136443949","end":136443949,"assembly_name":"GRCm38","allele_string":"T/C"}],"most_severe_consequence":"3_prime_UTR_variant","synonyms":[],"name":"rs4224828","evidence":["Multiple_observations","Frequency"],"var_class":"SNP","minor_allele":null}
+
+------------------------------------------------------------
+
+Question 13:
+
+curl 'https://rest.ensembl.org/sequence/region/danio_rerio/20:33294428:33294527:1?' -H 'Content-type:text/x-fasta'
+
+>chromosome:GRCz11:20:33294428:33294527:1
+TAGAATAATACTTCACAGCCCGAAACACAGAGGCGCAGAACAGTCTTCAGTCGCCGCGGT
+AGATGTGCGACTCCAAACGGGAGGCACAGTGACTGCGATA
+
+------------------------------------------------------------
