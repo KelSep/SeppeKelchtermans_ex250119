@@ -1,0 +1,21 @@
+UNF:
+(personnel number, name, date of birth, lab code, lab name, research code, research description, research supervisor)
+
+I assume that there are no non atomic values in the table and there are no repeating groups hence it is already in the 1st normal form.
+
+1NF:
+research lab('personnel number', name, date of birth, lab code, lab name, research code, research description, research supervisor)
+
+lab name does not say anything about the personnel number so we will put this in a different table called lab with lab code on which lab name does depend. research description and research supervisor also do not depend on personnel number so we will put this in a different table called research with research code on which they do depend.  
+
+2NF:
+Personnel('Personnel number', name, date of birth,lab code,'research code')
+Lab('lab code', lab name)
+Research('research code', research description, 'research supervisor') 
+
+The same because there are no transitive dependencies left between non-key attributes and key-attributes.
+
+3NF:
+Personnel('Personnel number', name, date of birth,lab code,'research code')
+Lab('lab code', lab name)
+Research('research code', research description, research supervisor)
