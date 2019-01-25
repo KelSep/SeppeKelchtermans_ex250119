@@ -1,0 +1,68 @@
+Examen: MySQL queries (4-7)				Kelchtermans Seppe
+
+-------------------------------------------------------------------------
+
+Question 4: 
+select gene_name, (seq_region_end-seq_region_start+1) as length from gene order by length limit 1;
+
++-----------+--------+
+| gene_name | length |
++-----------+--------+
+| TRDD1     |      8 |
++-----------+--------+
+1 row in set (0.04 sec)
+
+-------------------------------------------------------------------------
+
+Question 5: 
+select gene_name, count(transcript_id) from gene as g join transcript as t on g.gene_id=t.gene_id group by g.gene_id order by count(transcript_id) desc limit 1;
+
++-----------+----------------------+
+| gene_name | count(transcript_id) |
++-----------+----------------------+
+| NDRG2     |                   80 |
++-----------+----------------------+
+1 row in set (0.14 sec)
+
+-------------------------------------------------------------------------
+
+Question 6:
+1) select chromosome, count(gene_id) as amnt_genes from gene where description rlike "cancer" group by chromosome order by amnt_genes desc limit 1 offset 1;
++------------+------------+
+| chromosome | amnt_genes |
++------------+------------+
+| 9          |          5 |
++------------+------------+
+1 row in set (0.06 sec)
+
+2) select chromosome, count(*) as amnt_exons from gene as g join transcript as t on g.gene_id=t.gene_id join exon_transcript as et on et.transcript_id=t.transcript_id where chromosome=9 group by chromosome; 
++------------+------------+
+| chromosome | amnt_exons |
++------------+------------+
+| 9          |      45679 |
++------------+------------+
+1 row in set, 5348 warnings (0.18 sec)
+
+-------------------------------------------------------------------------
+
+Question 7:
+
+select count(*) from exon;
++----------+
+| count(*) |
++----------+
+|   642590 |
++----------+
+1 row in set (0.09 sec)
+
+select count(*) from exon_transcript;
++----------+
+| count(*) |
++----------+
+|  1178393 |
++----------+
+1 row in set (0.14 sec)
+
+The reason why is because one transcript can have multiple exons and the relation between transcript and exon is shown in the cross reference table exon_transcript. The exon table only contains the ID's of the exons and information about it. 
+-------------------------------------------------------------------------
+
