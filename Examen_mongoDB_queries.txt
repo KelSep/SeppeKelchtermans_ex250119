@@ -1,0 +1,36 @@
+Questions MongoDB (8-11)			Seppe Kelchtermans
+
+--------------------------------------------------------------------
+
+Question 8:
+db.getCollection('mongo_examen').find({method_of_admission:'TABLET;BUCCAL, SUBLINGUAL'},{drug:1})
+result:
+{ "_id" : ObjectId("588878f14ffaac2610855b5e"), "drug" : "DEMULEN 1/35-28" }
+
+--------------------------------------------------------------------
+
+Question 9:
+db.getCollection('mongo_examen').find({percentage_of_side_effects:{$gt:8}}).count()
+result:
+399
+
+--------------------------------------------------------------------
+
+Question 10:
+db.getCollection('mongo_examen').aggregate([
+{$group:
+{_id:'$company',avg_side_effect:{$avg:'$percentage_of_side_effects'}}
+},{$match:{avg_side_effect:{$gt:10}}},
+{$sort:{avg_side_effect:-1}}])
+
+result:
+{ "_id" : "Galderma Laboratories, L.P.", "avg_side_effect" : 11.5 }
+{ "_id" : "Watson Pharmaceuticals, Inc.", "avg_side_effect" : 10.65 }
+{ "_id" : "Durata Therapeutics, Inc.", "avg_side_effect" : 10.5 }
+
+--------------------------------------------------------------------
+Question 11:
+
+--------------------------------------------------------------------
+
+
